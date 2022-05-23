@@ -17,7 +17,7 @@ namespace Ispit.API.Controllers
         }
 
 
-        // GET: api/ToDo
+        // GET: api/ToDoLists
         [HttpGet]
         public ActionResult GetToDoLists()
         {
@@ -34,7 +34,7 @@ namespace Ispit.API.Controllers
         }
 
 
-        // POST: api/ToDo
+        // POST: api/ToDoLists
         [HttpPost]
         public ActionResult PostToDoList(ToDoList new_list)
         {
@@ -58,7 +58,7 @@ namespace Ispit.API.Controllers
         }
 
 
-        // GET: api/ToDo/5
+        // GET: api/ToDoLists/5
         [HttpGet]
         [Route("{id}")]
         public ActionResult GetToDoListById(int id)
@@ -82,7 +82,7 @@ namespace Ispit.API.Controllers
         }
 
 
-        // PUT: api/ToDo/5
+        // PUT: api/ToDoLists/5
         [HttpPut]
         [Route("{id}")]
         public ActionResult UpdateToDoList(int id, ToDoList update_list)
@@ -122,7 +122,7 @@ namespace Ispit.API.Controllers
         }
 
 
-        // DELETE: api/ToDo/5
+        // DELETE: api/ToDoLists/5
         [HttpDelete]
         [Route("{id}")]
         public ActionResult DeleteToDoList(int id)
