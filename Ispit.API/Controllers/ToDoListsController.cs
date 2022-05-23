@@ -48,12 +48,12 @@ namespace Ispit.API.Controllers
                 _context.ToDoLists.Add(new_list);
                 _context.SaveChanges();
 
-                return Ok("Uspješno kreirano!");
+                return Ok("Successfully created!");
 
             }
-            catch
+            catch(Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Nije potrebo unositi vrijednost za ID, se automatski dodjeljuje i uvećava!");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -69,7 +69,7 @@ namespace Ispit.API.Controllers
 
                 if (list_id == null)
                 {
-                    return NotFound("Rezultat nije pronađen!");
+                    return NotFound("Result not found!");
                 }
 
                 return Ok(list_id);
@@ -77,7 +77,7 @@ namespace Ispit.API.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Nije moguće prikazati rezultat, dogodila se greška!");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Unable to display result, an error occurred!");
             }
         }
 
@@ -91,18 +91,18 @@ namespace Ispit.API.Controllers
             {
                 if (id != update_list.Id)
                 {
-                    return BadRequest("Parametri ID se ne poklapaju!");
+                    return BadRequest("ID parameters do not match!");
                 }
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest("Podaci nisu validni!");
+                    return BadRequest("Data is invalid!");
                 }
 
                 var find_list = _context.ToDoLists.FirstOrDefault(l => l.Id == id);
 
                 if (find_list == null)
                 {
-                    return NotFound("Zapis nije pronađen!");
+                    return NotFound("No record found!");
                 }
 
                 var result = _context.ToDoLists.FirstOrDefault(x => x.Id == update_list.Id);
@@ -117,7 +117,7 @@ namespace Ispit.API.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Greška pri ažuriranju podataka!");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data!");
             }
         }
 
@@ -134,11 +134,11 @@ namespace Ispit.API.Controllers
                 _context.Remove(list_to_delete);
                 _context.SaveChanges();
 
-                return Ok("Uspješno obrisano!");
+                return Ok("Successfully deleted!");
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Brisanje nije moguće, dogodila se greška!");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Unable to delete, an error has occurred!");
             }
         }
 
