@@ -131,7 +131,7 @@ namespace Ispit.API.Controllers
             {
                 var list_to_delete = _context.ToDoLists.SingleOrDefault(l => l.Id == id);
 
-                _context.Remove(list_to_delete);
+                _context.ToDoLists.Remove(list_to_delete);
                 _context.SaveChanges();
 
                 return Ok("Successfully deleted!");
